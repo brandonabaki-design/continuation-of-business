@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Continuity Plan - Al Wahda Private School</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1a365d',
+                            900: '#0f294a',
+                        },
+                        gold: {
+                            500: '#d4af37',
+                            600: '#b5952f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        
+        /* Typography adjustments */
+        h1, h2, h3, h4 {
+            color: #0f294a;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                font-size: 11pt;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .document-container {
+                box-shadow: none !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+            .avoid-break {
+                page-break-inside: avoid;
+            }
+            a[href]:after {
+                content: none !important;
+            }
+            /* Adjust margins for printing */
+            @page {
+                margin: 2cm;
+            }
+        }
+
+        /* Custom styles for tables */
+        .styled-table th {
+            background-color: #0f294a;
+            color: white;
+        }
+        .styled-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        /* Link styling for TOC */
+        .toc-link {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .toc-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #d4af37;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .toc-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Floating Print Button -->
+    <button onclick="window.print()" class="no-print fixed bottom-8 right-8 bg-navy-900 text-white p-4 rounded-full shadow-2xl hover:bg-gold-500 hover:text-navy-900 transition-all duration-300 z-50 flex items-center gap-2 group">
+        <i data-lucide="printer" class="w-6 h-6"></i>
+        <span class="font-semibold pr-2 hidden group-hover:inline-block">Save as PDF</span>
+    </button>
+
+    <!-- Main Document Container (A4 Size approximation for screen) -->
+    <div class="document-container max-w-[210mm] mx-auto bg-white shadow-2xl my-8 p-12 sm:p-16 lg:p-20 relative overflow-hidden">
+        
+        <!-- Decorative Header Bar -->
+        <div class="absolute top-0 left-0 w-full h-3 flex">
+            <div class="w-3/4 bg-navy-900"></div>
+            <div class="w-1/4 bg-gold-500"></div>
+        </div>
+
+        <!-- COVER PAGE -->
+        <div class="min-h-[800px] flex flex-col items-center justify-center text-center page-break pb-20 relative">
+            <!-- Replace 'logo.png' with your actual image file name if stored locally -->
+            <img src="logo.png" 
+                 alt="Al Wahda Private School Logo" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/800x250/0f294a/ffffff?text=AL+WAHDA+PRIVATE+SCHOOL\nAn+American+Curriculum+School&font=lora'" 
+                 class="w-full max-w-lg mb-16 object-contain">
+            
+            <div class="w-24 h-1 bg-gold-500 mb-12 rounded-full"></div>
+            
+            <h1 class="font-serif text-5xl font-bold leading-tight mb-6">
+                Business Continuity Plan
+            </h1>
+            <h2 class="text-2xl text-gray-600 font-light tracking-wide mb-12">
+                for Schools in Emergency Situations
+            </h2>
+            
+            <div class="mt-auto absolute bottom-0 w-full flex justify-between text-sm text-gray-500 border-t border-gray-200 pt-8">
+                <span>Version 1 - 110626</span>
+                <span>Al Wahda Private School</span>
+            </div>
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="page-break py-12">
+            <div class="flex items-center gap-3 mb-8 border-b-2 border-gold-500 pb-4">
+                <i data-lucide="list" class="w-8 h-8 text-navy-900"></i>
+                <h2 class="text-3xl font-serif font-bold text-navy-900">Table of Contents</h2>
+            </div>
+            
+            <div class="space-y-3 font-sans text-gray-700">
+                <a href="#sec-1" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">1. Introduction</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-2" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">2. Purpose and Scope</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-3" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">3. Integration with Critical Incident Policy</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-4" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">4. Business Continuity Management Team</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-5" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">5. Risk Assessment and Business Impact Analysis</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-6" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">6. Continuity Strategies</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-7" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">7. Emergency Response Procedures for Specific Scenarios</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-8" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">8. Communication Plan</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-9" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">9. Resource Management</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-10" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">10. Educational Continuity</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-11" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">11. Recovery and Restoration</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-12" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">12. Testing, Training, and Exercises</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-13" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">13. Plan Maintenance and Review</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-14" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">14. Appendices</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <a href="#sec-15" class="flex justify-between hover:text-navy-900 toc-link group"><span class="font-medium">15. References and External Sources</span> <span class="text-gray-400 group-hover:text-gold-500"></span></a>
+                <div class="pt-4 mt-4 border-t border-gray-100"></div>
+                <h3 class="font-serif font-bold text-lg text-navy-900 mt-4 mb-2">Additional Operational Elements</h3>
+                <a href="#op-1" class="flex justify-between hover:text-navy-900 toc-link group pl-4 text-sm"><span class="text-gray-600">1. Business Continuity Activation Levels</span></a>
+                <a href="#op-2" class="flex justify-between hover:text-navy-900 toc-link group pl-4 text-sm"><span class="text-gray-600">2. Business Impact Analysis (Operational Table)</span></a>
+                <a href="#op-3" class="flex justify-between hover:text-navy-900 toc-link group pl-4 text-sm"><span class="text-gray-600">3. Communication Templates (Operational Use)</span></a>
+                <a href="#op-4" class="flex justify-between hover:text-navy-900 toc-link group pl-4 text-sm"><span class="text-gray-600">4. Emergency Quick Guide for Teachers</span></a>
+                <a href="#op-5" class="flex justify-between hover:text-navy-900 toc-link group pl-4 text-sm"><span class="text-gray-600">5. Crisis Decision Log Template</span></a>
+                <a href="#op-6" class="flex justify-between hover:text-navy-900 toc-link group pl-4 text-sm"><span class="text-gray-600">6. Key Compliance Standards</span></a>
+            </div>
+        </div>
+
+        <div class="w-full h-px bg-gray-200 my-12 page-break"></div>
+
+        <!-- MAIN CONTENT SECTIONS -->
+
+        <!-- Section 1 -->
+        <section id="sec-1" class="mb-12">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="info" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">1. Introduction</h2>
+            </div>
+            <div class="prose max-w-none text-gray-700 space-y-4">
+                <p>This Business Continuity Plan (BCP) serves as an extension of the Critical Incident Policy and Procedures for Athena Schools. While the Critical Incident Policy focuses on immediate response to emergencies, this BCP addresses the sustained operations and recovery of educational services during and after prolonged disruptions.</p>
+                <p>The UAE's geographical location and current geopolitical context present unique challenges, including potential missile and drone attacks, disruptions to maritime routes through the Straits of Hormuz, and regional conflicts that may affect school operations. This plan provides a framework for maintaining essential educational functions during such emergencies.</p>
+            </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="sec-2" class="mb-12 avoid-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="target" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">2. Purpose and Scope</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-navy-900">
+                    <h3 class="text-lg font-bold text-navy-900 mb-3">Purpose</h3>
+                    <p class="text-sm text-gray-600 mb-2">This Business Continuity Plan aims to:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                        <li>Ensure the continuation of essential educational services during emergencies</li>
+                        <li>Minimise disruption to teaching and learning</li>
+                        <li>Protect student and staff welfare during prolonged crises</li>
+                        <li>Maintain stakeholder confidence through effective management of disruptions</li>
+                        <li>Comply with UAE regulatory requirements and international best practices</li>
+                        <li>Facilitate swift recovery and return to normal operations</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-gold-500">
+                    <h3 class="text-lg font-bold text-navy-900 mb-3">Scope</h3>
+                    <p class="text-sm text-gray-600 mb-2">This plan applies to:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                        <li>All school premises and school-sponsored activities</li>
+                        <li>All students, staff, contractors, and visitors</li>
+                        <li>Extended emergencies as defined in the Critical Incident Policy</li>
+                        <li>Specific scenarios including pandemic, severe weather, bereavement, evacuation due to fire/earthquake/flooding/storm damage, and geopolitical conflicts</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="sec-3" class="mb-12">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="git-merge" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">3. Integration with Critical Incident Policy</h2>
+            </div>
+            <div class="prose max-w-none text-gray-700 space-y-4">
+                <p>This Business Continuity Plan builds upon the foundation established in the Critical Incident Policy and Procedures. The relationship between the two documents is as follows:</p>
+                <div class="bg-white border border-gray-200 shadow-sm rounded-lg p-5">
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 mr-3 mt-1 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-bold text-navy-900">Critical Incident Policy:</span> Focuses on immediate response, safety protocols, and short-term management of emergencies.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="activity" class="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-bold text-navy-900">Business Continuity Plan:</span> Addresses sustained operations, alternative delivery methods, and recovery strategies.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <p class="italic text-sm">The transition from crisis response to business continuity will be determined by the Critical Incident Management Team (CIMT) based on the nature and duration of the incident.</p>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="sec-4" class="mb-12 page-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="users" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">4. Business Continuity Management Team</h2>
+            </div>
+            <div class="prose max-w-none text-gray-700 space-y-6">
+                <p>The Business Continuity Management Team (BCMT) shall consist of the following in each of the Athena group of schools coordinated by the AAB and Head Office:</p>
+                
+                <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                        <p class="font-semibold text-navy-900">School Principal:</p>
+                        <p class="text-sm">Mr. Duraid Al Oubaidy</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                        <p class="font-semibold text-navy-900">Vice Principals/Deputy Heads:</p>
+                        <p class="text-sm">Ms. Shatha Debaisi / Ms. Leila Chammas</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                        <p class="font-semibold text-navy-900">Operations Manager:</p>
+                        <p class="text-sm">Mr. Zaid Hassan</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                        <p class="font-semibold text-navy-900">Finance/Accounts Manager:</p>
+                        <p class="text-sm">Mr. Arun Verdon</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                        <p class="font-semibold text-navy-900">HR Manager:</p>
+                        <p class="text-sm">Mr. Ahmed Samy</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm">
+                        <ul class="list-none space-y-1">
+                            <li><span class="font-semibold text-navy-900">IT Managers</span> (Digital Infrastructure Leads)</li>
+                            <li><span class="font-semibold text-navy-900">Communications Officers</span> (Stakeholder Relations Leads)</li>
+                            <li><span class="font-semibold text-navy-900">Health and Safety Officer</span> (Risk Management Leads)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold text-navy-900 mt-8 mb-4">Roles and Responsibilities</h3>
+                
+                <div class="space-y-6">
+                    <!-- Role Card -->
+                    <div class="border-l-4 border-navy-900 pl-4 avoid-break">
+                        <h4 class="font-bold text-lg text-navy-900">School Principal / Team Leader</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                            <li>Overall responsibility for business continuity management</li>
+                            <li>Strategic decision-making during prolonged disruptions</li>
+                            <li>Liaison with regulatory authorities and the school’s Local Advisory Board (LAB) (aka governors, including parent, staff and external governors and Athena HO)</li>
+                            <li>Approval of resource allocation for continuity measures</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-gold-500 pl-4 avoid-break">
+                        <h4 class="font-bold text-lg text-navy-900">Vice Principal / Academic Continuity Lead</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                            <li>Development and implementation of alternative teaching arrangements</li>
+                            <li>Coordination of curriculum adjustments</li>
+                            <li>Monitoring of student progress during disruptions</li>
+                            <li>Management of assessment continuity</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-navy-900 pl-4 avoid-break">
+                        <h4 class="font-bold text-lg text-navy-900">Operations Manager / Facilities and Resources Lead</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                            <li>Management of alternative facilities if required</li>
+                            <li>Coordination of essential supplies and services</li>
+                            <li>Implementation of physical distancing or other safety measures</li>
+                            <li>Oversight of transportation arrangements during disruptions</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-gold-500 pl-4 avoid-break">
+                        <h4 class="font-bold text-lg text-navy-900">IT Manager / Digital Infrastructure Lead</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                            <li>Maintenance of IT systems for remote learning</li>
+                            <li>Technical support for staff and students</li>
+                            <li>Data security and backup during disruptions</li>
+                            <li>Implementation of alternative communication systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-navy-900 pl-4 avoid-break">
+                        <h4 class="font-bold text-lg text-navy-900">Finance Manager / Financial Continuity Lead</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                            <li>Management of financial obligations during disruptions</li>
+                            <li>Processing of essential payments</li>
+                            <li>Financial impact assessment</li>
+                            <li>Insurance and recovery funding coordination</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-gold-500 pl-4 avoid-break">
+                        <h4 class="font-bold text-lg text-navy-900">HR Manager / Staff Welfare and Deployment Lead</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                            <li>Staff availability monitoring</li>
+                            <li>Alternative staffing arrangements</li>
+                            <li>Staff welfare and support programs</li>
+                            <li>Management of temporary staff if required</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-navy-900 pl-4 avoid-break">
+                        <h4 class="font-bold text-lg text-navy-900">Communications Officer / Stakeholder Relations Lead</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                            <li>Coordination of communications with parents, staff, and students</li>
+                            <li>Management of public relations during prolonged disruptions</li>
+                            <li>Development of communication templates and schedules</li>
+                            <li>Monitoring of community feedback and concerns</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-gold-500 pl-4 avoid-break">
+                        <h4 class="font-bold text-lg text-navy-900">Health and Safety Officer / Risk Management Lead</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                            <li>Ongoing risk assessment during prolonged emergencies</li>
+                            <li>Implementation of health and safety protocols</li>
+                            <li>Liaison with health authorities (Dubai and Sharjah and nationally)</li>
+                            <li>Monitoring compliance with safety requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="sec-5" class="mb-12 page-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="alert-circle" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">5. Risk Assessment and Business Impact Analysis</h2>
+            </div>
+            
+            <h3 class="text-xl font-bold text-navy-900 mb-4">Critical Functions</h3>
+            <div class="grid md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-red-50 border border-red-200 rounded-lg p-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <h4 class="font-bold text-red-900">Priority 1 <span class="text-sm font-normal">(Must continue)</span></h4>
+                    </div>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-red-900">
+                        <li>Student and staff safety and security</li>
+                        <li>Communication with stakeholders</li>
+                        <li>Core teaching and learning activities</li>
+                        <li>Safeguarding, Child Protection and Wellbeing Support</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <h4 class="font-bold text-yellow-900">Priority 2 <span class="text-sm font-normal">(Should continue)</span></h4>
+                    </div>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-yellow-900">
+                        <li>Assessment and examination processes</li>
+                        <li>Special educational needs support</li>
+                        <li>Counselling services</li>
+                        <li>IT infrastructure and support</li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50 border border-green-200 rounded-lg p-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <h4 class="font-bold text-green-900">Priority 3 <span class="text-sm font-normal">(Could suspend)</span></h4>
+                    </div>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-green-900">
+                        <li>Extra-curricular activities</li>
+                        <li>Non-essential administrative functions</li>
+                        <li>Facility maintenance (except safety-critical)</li>
+                        <li>Community events and programs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-navy-900 mb-4">Specific Risks for UAE Schools</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Geopolitical Risks</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Missile and drone attacks from regional conflicts</li>
+                        <li>Disruption to maritime routes affecting supplies</li>
+                        <li>Evacuation of expatriate staff and students</li>
+                        <li>Embassy-mandated departures</li>
+                        <li>Airspace restrictions affecting travel</li>
+                    </ul>
+                </div>
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Natural Hazards</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Sandstorms and extreme heat</li>
+                        <li>Flash flooding</li>
+                        <li>Seismic activity</li>
+                        <li>Pandemic or epidemic disease</li>
+                    </ul>
+                </div>
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Infrastructure Disruptions</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Extended power outages</li>
+                        <li>Water supply interruptions</li>
+                        <li>Telecommunications failures</li>
+                        <li>Transportation disruptions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-navy-900 mb-3">Business Impact Analysis</h3>
+            <p class="text-gray-700 mb-2 text-sm">For each critical function, the plan includes:</p>
+            <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-200 inline-block w-full">
+                <li>Maximum tolerable period of disruption</li>
+                <li>Recovery time objective</li>
+                <li>Minimum resources required</li>
+                <li>Dependencies on other functions or external providers</li>
+                <li>Impact of disruption on stakeholders</li>
+            </ul>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="sec-6" class="mb-12 page-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="layers" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">6. Continuity Strategies</h2>
+            </div>
+            
+            <div class="prose max-w-none text-gray-700 space-y-6">
+                <p><strong>Coordination between on-site and remote teaching</strong> – AWPS will ensure that curriculum delivery remains consistent for both in-school and remote learners through coordinated planning and communication among teaching staff.</p>
+                
+                <h3 class="text-lg font-bold text-navy-900 border-l-4 border-gold-500 pl-3">Alternative Locations</h3>
+                <ul class="list-none space-y-3 text-sm">
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Identification of backup facilities</strong> – AWPS will identify suitable alternative locations that may be used temporarily if the main school premises become unavailable due to emergency conditions.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Memoranda of Understanding (MOU) with ‘sister’ or partner schools</strong> – AWPS will establish formal agreements with partner institutions to allow shared use of facilities during prolonged disruptions.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Use of community facilities</strong> – AWPS may utilise appropriate community venues such as halls or educational centres where safe and practical learning spaces are required.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Rapid deployment requirements for temporary learning spaces</strong> – AWPS will maintain plans and logistical arrangements for quickly establishing temporary classrooms or learning areas if needed.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Security and safety assessment protocols for alternative sites</strong> – AWPS will conduct risk and safety assessments to ensure any temporary learning location meets safeguarding, security, and operational standards.</li>
+                </ul>
+
+                <h3 class="text-lg font-bold text-navy-900 border-l-4 border-gold-500 pl-3 mt-6">Staff Deployment Strategies</h3>
+                <ul class="list-none space-y-3 text-sm">
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Cross-training for critical roles</strong> – AWPS will ensure that key staff members are trained to perform essential functions outside their usual responsibilities to maintain operational continuity.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Remote working protocols</strong> – AWPS will provide guidance and technological support to enable staff to perform their duties effectively while working remotely during disruptions.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Staff redeployment procedures</strong> – AWPS may temporarily reassign staff to priority roles or areas where additional support is required during emergency conditions.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Temporary staffing arrangements</strong> – AWPS will maintain procedures for engaging temporary or substitute staff when regular personnel are unavailable.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Support for staff in evacuation scenarios</strong> – AWPS will provide appropriate guidance and assistance for staff who may be required to relocate or evacuate due to emergency or diplomatic requirements.</li>
+                </ul>
+
+                <h3 class="text-lg font-bold text-navy-900 border-l-4 border-gold-500 pl-3 mt-6">Supply Chain Resilience</h3>
+                <ul class="list-none space-y-3 text-sm">
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Critical supplier identification</strong> – AWPS will identify essential suppliers whose services are necessary to maintain school operations during disruptions.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Alternative supplier arrangements</strong> – AWPS will establish secondary supplier options to reduce reliance on a single provider and minimise supply interruptions.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Stockpiling of essential materials</strong> – AWPS will maintain reasonable reserves of critical materials and resources required for safe school operation.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Local sourcing strategies during disruptions</strong> – AWPS will prioritise locally available resources where possible to ensure continued access to essential goods during supply chain interruptions.</li>
+                    <li><i data-lucide="check-circle-2" class="w-4 h-4 inline text-green-600 mr-2"></i><strong>Digital resource alternatives</strong> – AWPS will increase the use of digital materials and resources to reduce dependence on physical supplies when disruptions affect logistics or distribution.</li>
+                </ul>
+                <p class="text-sm italic text-gray-500 mt-4 bg-gray-50 p-3 rounded">* Strategies and procedures comply with expectations by regulators and inspectors in the UAE, including authorities such as the UAE Ministry of Education and Knowledge and Human Development Authority.</p>
+            </div>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="sec-7" class="mb-12 page-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="shield-alert" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">7. Emergency Response Procedures for Specific Scenarios</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white border border-gray-200 shadow-sm p-5 rounded-lg avoid-break border-t-4 border-t-navy-900">
+                    <h3 class="font-bold text-navy-900 mb-3 flex items-center"><i data-lucide="activity" class="w-4 h-4 mr-2"></i> Pandemic/Epidemic Response</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Health monitoring and reporting protocols</li>
+                        <li>Infection control measures</li>
+                        <li>Vaccination support if applicable</li>
+                        <li>Remote learning implementation</li>
+                        <li>Phased return to on-site operations</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white border border-gray-200 shadow-sm p-5 rounded-lg avoid-break border-t-4 border-t-navy-900">
+                    <h3 class="font-bold text-navy-900 mb-3 flex items-center"><i data-lucide="cloud-lightning" class="w-4 h-4 mr-2"></i> Severe Weather Conditions</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Early warning monitoring</li>
+                        <li>Pre-emptive closure protocols</li>
+                        <li>Remote learning activation</li>
+                        <li>Facility protection measures</li>
+                        <li>Post-event assessment procedures</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white border border-gray-200 shadow-sm p-5 rounded-lg avoid-break border-t-4 border-t-navy-900">
+                    <h3 class="font-bold text-navy-900 mb-3 flex items-center"><i data-lucide="heart" class="w-4 h-4 mr-2"></i> Student and Staff Bereavement</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Psychological support services</li>
+                        <li>Cultural and religious considerations</li>
+                        <li>Communication protocols</li>
+                        <li>Temporary staffing arrangements</li>
+                        <li>Memorial and remembrance procedures</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white border border-gray-200 shadow-sm p-5 rounded-lg avoid-break border-t-4 border-t-navy-900">
+                    <h3 class="font-bold text-navy-900 mb-3 flex items-center"><i data-lucide="flame" class="w-4 h-4 mr-2"></i> Evacuation (Fire, Earthquake, Flood)</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Short-term relocation procedures</li>
+                        <li>Extended displacement protocols</li>
+                        <li>Educational continuity during facility repairs</li>
+                        <li>Insurance and documentation requirements</li>
+                        <li>Phased re-occupation procedures</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white border border-gray-200 shadow-sm p-5 rounded-lg avoid-break border-t-4 border-t-red-700">
+                    <h3 class="font-bold text-red-800 mb-3 flex items-center"><i data-lucide="globe" class="w-4 h-4 mr-2"></i> Geopolitical Conflict & Force Majeure</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Embassy liaison procedures</li>
+                        <li>Evacuation support for expatriate families</li>
+                        <li>Remote learning for evacuated students</li>
+                        <li>Staff retention and support strategies</li>
+                        <li>Legal and contractual considerations</li>
+                        <li>Scenario planning for various conflict escalation levels</li>
+                    </ul>
+                </div>
+
+                <div class="bg-red-50 border border-red-200 shadow-sm p-5 rounded-lg avoid-break border-t-4 border-t-red-600">
+                    <h3 class="font-bold text-red-900 mb-3 flex items-center"><i data-lucide="crosshair" class="w-4 h-4 mr-2"></i> UAE Context: Missile/Drone Attacks</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-red-800">
+                        <li>Shelter-in-place protocols</li>
+                        <li>Communication with diplomatic missions</li>
+                        <li>Transportation safety measures</li>
+                        <li>Family reunification procedures</li>
+                        <li>Extended lockdown provisions</li>
+                        <li>Psychological support for trauma</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="sec-8" class="mb-12 page-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="radio" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">8. Communication Plan</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1 flex items-center"><i data-lucide="smartphone" class="w-4 h-4 mr-2 text-gold-500"></i> Communication Channels</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Primary and backup communication methods</li>
+                        <li>Role-specific communication tools</li>
+                        <li>Secure communication protocols during security incidents</li>
+                        <li>Multi-language communication capability</li>
+                    </ul>
+                </div>
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1 flex items-center"><i data-lucide="users" class="w-4 h-4 mr-2 text-gold-500"></i> Stakeholder Messaging</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Parent/guardian communication templates and schedules</li>
+                        <li>Staff briefing protocols</li>
+                        <li>Student-appropriate messaging</li>
+                        <li>Board and authority updates</li>
+                        <li>Community and media relations</li>
+                    </ul>
+                </div>
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1 flex items-center"><i data-lucide="database" class="w-4 h-4 mr-2 text-gold-500"></i> Information Management</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Single source of truth designation</li>
+                        <li>Rumour management procedures</li>
+                        <li>Social media monitoring and response</li>
+                        <li>FAQ development and maintenance</li>
+                        <li>Call centre activation for major incidents</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9 -->
+        <section id="sec-9" class="mb-12">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="package" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">9. Resource Management</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-4 rounded border-l-4 border-navy-900 avoid-break">
+                    <h3 class="font-bold text-navy-900 mb-2">Financial Resources</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Emergency fund access procedures</li>
+                        <li>Expense authorisation during disruptions</li>
+                        <li>Cash flow management strategies</li>
+                        <li>Insurance claim procedures</li>
+                        <li>Financial reporting during emergencies</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-4 rounded border-l-4 border-gold-500 avoid-break">
+                    <h3 class="font-bold text-navy-900 mb-2">Physical Resources</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Inventory of critical equipment and supplies</li>
+                        <li>Resource sharing arrangements with partner institutions</li>
+                        <li>Alternative procurement procedures</li>
+                        <li>Asset tracking during relocation</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-4 rounded border-l-4 border-navy-900 avoid-break">
+                    <h3 class="font-bold text-navy-900 mb-2">Human Resources</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Staff availability monitoring</li>
+                        <li>Wellbeing support programs</li>
+                        <li>Temporary contracting procedures</li>
+                        <li>Remote work policies and support</li>
+                        <li>Expatriate staff support during evacuations</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-4 rounded border-l-4 border-gold-500 avoid-break">
+                    <h3 class="font-bold text-navy-900 mb-2">Information Resources</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Data backup and recovery procedures</li>
+                        <li>Critical records protection</li>
+                        <li>Alternative access methods for essential information</li>
+                        <li>Data security during remote operations</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10 -->
+        <section id="sec-10" class="mb-12 page-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="book-open" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">10. Educational Continuity</h2>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="avoid-break">
+                        <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Curriculum Adaptation</h4>
+                        <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                            <li>Prioritisation of learning objectives</li>
+                            <li>Simplified assessment frameworks</li>
+                            <li>Alternative delivery methods by subject area</li>
+                            <li>Cross-curricular emergency projects</li>
+                            <li>Acceleration strategies for post-disruption recovery</li>
+                        </ul>
+                    </div>
+                    <div class="avoid-break">
+                        <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Assessment Continuity</h4>
+                        <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                            <li>Alternative assessment methods</li>
+                            <li>Authentication protocols for remote assessments</li>
+                            <li>Examination security measures</li>
+                            <li>Coordination with examination boards</li>
+                            <li>Documentation of exceptional circumstances</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="avoid-break">
+                        <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Support for Vulnerable Students</h4>
+                        <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                            <li>Identification of at-risk students</li>
+                            <li>Individualised support plans</li>
+                            <li>Resource provision for students with limited home support</li>
+                            <li>Monitoring and intervention procedures</li>
+                            <li>Collaboration with external support agencies</li>
+                        </ul>
+                    </div>
+                    <div class="avoid-break">
+                        <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Wellbeing and Pastoral Care</h4>
+                        <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                            <li>Virtual pastoral support systems</li>
+                            <li>Online counselling services</li>
+                            <li>Peer support networks</li>
+                            <li>Parent guidance and resources</li>
+                            <li>Monitoring of student engagement and welfare</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 11 -->
+        <section id="sec-11" class="mb-12 page-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="refresh-cw" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">11. Recovery and Restoration</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-blue-50/50 p-5 rounded-lg border border-blue-100 avoid-break">
+                    <h3 class="font-bold text-navy-900 mb-2 flex items-center"><i data-lucide="calendar" class="w-4 h-4 mr-2"></i> Phased Return Planning</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Assessment criteria for safe return</li>
+                        <li>Prioritisation of student groups for return</li>
+                        <li>Facility readiness requirements</li>
+                        <li>Staff redeployment procedures</li>
+                        <li>Communication timeline and templates</li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50/50 p-5 rounded-lg border border-blue-100 avoid-break">
+                    <h3 class="font-bold text-navy-900 mb-2 flex items-center"><i data-lucide="trending-up" class="w-4 h-4 mr-2"></i> Academic Recovery</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Learning gap assessment</li>
+                        <li>Targeted intervention programs</li>
+                        <li>Modified curriculum to address missed content</li>
+                        <li>Extended learning opportunities</li>
+                        <li>Progress monitoring systems</li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50/50 p-5 rounded-lg border border-blue-100 avoid-break">
+                    <h3 class="font-bold text-navy-900 mb-2 flex items-center"><i data-lucide="smile" class="w-4 h-4 mr-2"></i> Psychological Recovery</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Trauma-informed practices</li>
+                        <li>Community rebuilding activities</li>
+                        <li>Recognition and memorial events, if appropriate</li>
+                        <li>Ongoing monitoring of wellbeing</li>
+                        <li>Referral pathways for additional support</li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50/50 p-5 rounded-lg border border-blue-100 avoid-break">
+                    <h3 class="font-bold text-navy-900 mb-2 flex items-center"><i data-lucide="settings" class="w-4 h-4 mr-2"></i> Operational Recovery</h3>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Damage assessment procedures</li>
+                        <li>Repair and restoration prioritization</li>
+                        <li>Equipment replacement processes</li>
+                        <li>Documentation for insurance and regulatory purposes</li>
+                        <li>Lessons learned integration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 12 -->
+        <section id="sec-12" class="mb-12">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="check-square" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">12. Testing, Training, and Exercises</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Exercise Program</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Tabletop exercises (twice yearly)</li>
+                        <li>Functional exercises (annually)</li>
+                        <li>Full-scale simulations (every two years)</li>
+                        <li>Scenario-specific drills</li>
+                        <li>Multi-agency coordination exercises</li>
+                    </ul>
+                </div>
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Training Requirements</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Role-specific business continuity training</li>
+                        <li>Digital tools competency development</li>
+                        <li>Psychological first aid training</li>
+                        <li>Remote teaching methodology training</li>
+                        <li>Documentation and record-keeping procedures</li>
+                    </ul>
+                </div>
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2 border-b border-gray-200 pb-1">Performance Measurement</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Key performance indicators for business continuity</li>
+                        <li>After-action review methodology</li>
+                        <li>Improvement planning process</li>
+                        <li>Recognition of effective practices</li>
+                        <li>Accountability mechanisms</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 13 -->
+        <section id="sec-13" class="mb-12 page-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="clock" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">13. Plan Maintenance and Review</h2>
+            </div>
+            <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg">
+                <p class="text-gray-700 mb-4 font-medium">This plan shall be reviewed:</p>
+                <ul class="list-none space-y-2 mb-4 text-sm text-gray-700">
+                    <li><i data-lucide="check" class="w-4 h-4 inline text-navy-900 mr-2"></i> Annually as part of the school's policy review cycle</li>
+                    <li><i data-lucide="check" class="w-4 h-4 inline text-navy-900 mr-2"></i> Following any activation of the plan</li>
+                    <li><i data-lucide="check" class="w-4 h-4 inline text-navy-900 mr-2"></i> When changes in regulations or best practices occur</li>
+                    <li><i data-lucide="check" class="w-4 h-4 inline text-navy-900 mr-2"></i> When changes to the school premises, operations, or risk profile require updates</li>
+                </ul>
+                <p class="text-sm italic text-gray-600 border-t border-gray-200 pt-4 mt-2">
+                    The Business Continuity Management Team is responsible for ensuring the plan remains current and effective.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 14 -->
+        <section id="sec-14" class="mb-12">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="paperclip" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">14. Appendices</h2>
+            </div>
+            <p class="text-sm text-gray-500 italic mb-4">[Details are to be added for each element]</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2">Appendix A: Digital Learning Platforms and Tools</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Approved platforms and applications</li>
+                        <li>Access and authentication procedures</li>
+                        <li>Technical support contacts</li>
+                        <li>User guides and resources</li>
+                    </ul>
+                </div>
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2">Appendix B: Contact Information</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>BCMT members and alternates</li>
+                        <li>External support agencies</li>
+                        <li>Partner institutions</li>
+                        <li>Diplomatic missions</li>
+                        <li>Insurance and legal contacts</li>
+                    </ul>
+                </div>
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2">Appendix C: Forms and Templates</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Situation report template</li>
+                        <li>Decision log format</li>
+                        <li>Resource request form</li>
+                        <li>Communication templates</li>
+                        <li>Incident impact assessment form</li>
+                    </ul>
+                </div>
+                <div class="avoid-break">
+                    <h4 class="font-bold text-navy-900 mb-2">Appendix D: Alternative Location Details</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700">
+                        <li>Site specifications and capacities</li>
+                        <li>Access arrangements</li>
+                        <li>Resource availability</li>
+                        <li>Transportation considerations</li>
+                        <li>Security assessment</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 15 -->
+        <section id="sec-15" class="mb-12 page-break">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="link" class="w-6 h-6 text-gold-500"></i>
+                <h2 class="text-2xl font-serif font-bold text-navy-900 border-b-2 border-gold-500 pb-2 inline-block">15. References and External Sources</h2>
+            </div>
+            
+            <ul class="space-y-3 text-sm text-gray-700 mb-8 break-all">
+                <li><strong>Safe Havens International. (2012).</strong> Business Continuity Planning for Schools. <a href="https://safehavensinternational.org/wp-content/uploads/2012/05/Business_Continuity_Planning_Basics-Safe_Havens_International.pdf" class="text-blue-600 hover:underline" target="_blank">Link</a></li>
+                <li><strong>UAE Ministry of Education. (2020).</strong> Operation of Educational Establishments during the Pandemic Protocols. <a href="https://www.moe.gov.ae/Ar/Documents/Operation_of_Educational_Establishments_during_the_Pandemic_Protocols.pdf" class="text-blue-600 hover:underline" target="_blank">Link</a></li>
+                <li><strong>UAE Ministry of Economy and Tourism.</strong> Business Continuity Management System Policy. (2026) <a href="https://www.moet.gov.ae/en/business-continuity-management-system-policy" class="text-blue-600 hover:underline" target="_blank">Link</a></li>
+                <li><strong>UNHCR. (2022)</strong> Business Continuity Planning. <a href="https://emergency.unhcr.org/emergency-preparedness/unhcr-preparedness/business-continuity-planning" class="text-blue-600 hover:underline" target="_blank">Link</a></li>
+                <li><strong>Bryght Path (2024).</strong> Ensuring Business Continuity for Education: Key Strategies. <a href="https://bryghtpath.com/business-continuity-for-education/" class="text-blue-600 hover:underline" target="_blank">Link</a></li>
+                <li><strong>KHDA Dubai. (2021).</strong> Protocols for the Reopening of Private Schools in Dubai. <a href="https://www.khda.gov.ae/CMS/WebParts/TextEditor/Documents/Schools-Reopening-Protocol-En.pdf" class="text-blue-600 hover:underline" target="_blank">Link</a></li>
+                <li><strong>UNESCO. (2024).</strong> Education and School Safety. <a href="https://www.unesco.org/en/disaster-risk-reduction/school-safety" class="text-blue-600 hover:underline" target="_blank">Link</a></li>
+                <li><strong>Disaster Recovery Institute International (2023).</strong> Professional Practices. <a href="https://drii.org/resources/professionalpractices/EN" class="text-blue-600 hover:underline" target="_blank">Link</a></li>
+            </ul>
+
+            <div class="bg-gray-50 border-l-4 border-navy-900 p-6 rounded-lg avoid-break">
+                <h3 class="font-bold text-navy-900 mb-3">Compliance Statement</h3>
+                <p class="text-sm text-gray-700 mb-3">This Business Continuity Plan has been developed in accordance with:</p>
+                <ul class="list-disc pl-5 text-sm space-y-1 text-gray-700 mb-4">
+                    <li>UAE Ministry of Education requirements and guidelines</li>
+                    <li>KHDA (Dubai) and SPEA (Sharjah) school safety regulations</li>
+                    <li>UAE Civil Defence requirements</li>
+                    <li>International standards ISO 22301 (Business Continuity Management)</li>
+                    <li>UNESCO School Safety Guidelines</li>
+                    <li>Best practices from international school accreditation bodies</li>
+                </ul>
+                <p class="text-sm text-gray-700">
+                    This Business Continuity Plan serves as a comprehensive extension of the Critical Incident Policy and Procedures, focusing specifically on maintaining educational continuity during prolonged emergencies. The plan addresses the unique challenges faced by schools in the UAE, particularly in the context of regional geopolitical tensions and potential disruptions.<br><br>
+                    Implementation of this plan should be tailored to the specific circumstances, resources, and community needs of each school, with regular stress testing and updates to ensure effectiveness.
+                </p>
+            </div>
+        </section>
+
+        <!-- DIVIDER FOR ADDITIONAL ELEMENTS -->
+        <div class="w-full h-1 bg-gradient-to-r from-navy-900 via-gold-500 to-navy-900 my-16 page-break"></div>
+        <h1 class="text-3xl font-serif font-bold text-center text-navy-900 mb-12 uppercase tracking-wider">Additional Operational Elements</h1>
+
+        <!-- Op Element 1 -->
+        <section id="op-1" class="mb-12 avoid-break">
+            <h2 class="text-xl font-bold text-navy-900 mb-4 flex items-center"><span class="bg-gold-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">1</span> Business Continuity Activation Levels</h2>
+            <p class="text-sm text-gray-700 mb-4">To ensure a consistent and structured response during disruptions, AWPS will implement the following escalation framework.</p>
+            
+            <div class="overflow-x-auto shadow-sm border border-gray-200 rounded-lg">
+                <table class="styled-table table-auto w-full text-left text-sm">
+                    <thead>
+                        <tr>
+                            <th class="p-3">Level</th>
+                            <th class="p-3">Situation</th>
+                            <th class="p-3">Example Scenarios</th>
+                            <th class="p-3">Response</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b">
+                            <td class="p-3 font-semibold bg-gray-50">Level 1 – Monitoring</td>
+                            <td class="p-3">Minor disruption with minimal operational impact</td>
+                            <td class="p-3">Localised technical issue, temporary weather disruption</td>
+                            <td class="p-3">Internal monitoring and routine management</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-semibold bg-yellow-50">Level 2 – Limited Disruption</td>
+                            <td class="p-3">School operations partially affected</td>
+                            <td class="p-3">Partial campus closure, transport disruption</td>
+                            <td class="p-3">Limited continuity measures activated</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-semibold bg-orange-50">Level 3 – Major Disruption</td>
+                            <td class="p-3">Full campus closure required</td>
+                            <td class="p-3">Pandemic outbreak, major flooding, infrastructure failure</td>
+                            <td class="p-3">Full Business Continuity Plan activated</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold bg-red-50 text-red-900">Level 4 – Regional/National Emergency</td>
+                            <td class="p-3">Widespread disruption affecting multiple institutions</td>
+                            <td class="p-3">Regional conflict, national emergency directive</td>
+                            <td class="p-3">Coordination with authorities and remote operations</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-sm text-gray-600 mt-3 italic">The School Principal and the Critical Incident Management Team (CIMT) will determine the activation level based on the severity and expected duration of the disruption.</p>
+        </section>
+
+        <!-- Op Element 2 -->
+        <section id="op-2" class="mb-12 avoid-break">
+            <h2 class="text-xl font-bold text-navy-900 mb-4 flex items-center"><span class="bg-gold-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">2</span> Business Impact Analysis (Operational Table)</h2>
+            <p class="text-sm text-gray-700 mb-4">AWPS identifies the following critical operational functions and their acceptable disruption limits.</p>
+            
+            <div class="overflow-x-auto shadow-sm border border-gray-200 rounded-lg">
+                <table class="styled-table table-auto w-full text-left text-sm">
+                    <thead>
+                        <tr>
+                            <th class="p-3">Critical Function</th>
+                            <th class="p-3">Maximum Tolerable Disruption</th>
+                            <th class="p-3">Recovery Time Objective</th>
+                            <th class="p-3">Minimum Resources Required</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b">
+                            <td class="p-3 font-semibold">Student safety and supervision</td>
+                            <td class="p-3 text-red-600 font-bold">Immediate</td>
+                            <td class="p-3 font-bold">Immediate</td>
+                            <td class="p-3">Staff, safety systems</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-semibold">Communication with parents and staff</td>
+                            <td class="p-3">4 hours</td>
+                            <td class="p-3">1 hour</td>
+                            <td class="p-3">Communication platforms</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-semibold">Core teaching and learning</td>
+                            <td class="p-3">48 hours</td>
+                            <td class="p-3">24 hours</td>
+                            <td class="p-3">Teachers, digital platforms</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-semibold">IT systems and digital learning</td>
+                            <td class="p-3">24 hours</td>
+                            <td class="p-3">6 hours</td>
+                            <td class="p-3">IT infrastructure</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-3 font-semibold">Safeguarding and pastoral support</td>
+                            <td class="p-3">24 hours</td>
+                            <td class="p-3">12 hours</td>
+                            <td class="p-3">Safeguarding team</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold">Financial and payroll processes</td>
+                            <td class="p-3">5 days</td>
+                            <td class="p-3">48 hours</td>
+                            <td class="p-3">Finance systems</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-sm text-gray-600 mt-3 italic">This analysis enables AWPS to prioritise resources and decision-making during emergencies.</p>
+        </section>
+
+        <!-- Op Element 3 -->
+        <section id="op-3" class="mb-12 page-break">
+            <h2 class="text-xl font-bold text-navy-900 mb-6 flex items-center"><span class="bg-gold-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">3</span> Communication Templates (Operational Use)</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Parent Template -->
+                <div class="bg-[#fdfbf7] p-8 border border-gray-300 rounded-md shadow-sm relative avoid-break">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-navy-900 rounded-t-md"></div>
+                    <div class="text-xs text-gray-400 uppercase tracking-widest mb-4">Parent Communication Template</div>
+                    
+                    <p class="text-sm font-bold text-gray-800 mb-4">Subject: Important School Update – Continuity Measures</p>
+                    <p class="text-sm text-gray-700 mb-4">Dear Parents and Guardians,</p>
+                    <p class="text-sm text-gray-700 mb-4">AWPS would like to inform you that due to <strong>[brief description of the incident]</strong>, the school has activated elements of its Business Continuity Plan to ensure the safety of students and the continuation of learning.</p>
+                    <p class="text-sm text-gray-700 mb-2">Key actions currently in place include:</p>
+                    <ul class="list-disc pl-5 text-sm text-gray-700 mb-4 space-y-1">
+                        <li>Temporary adjustment to learning arrangements</li>
+                        <li>Ongoing monitoring of safety conditions</li>
+                        <li>Continuous communication with relevant authorities</li>
+                    </ul>
+                    <p class="text-sm text-gray-700 mb-4">Further updates will be provided through the school's official communication channels.</p>
+                    <p class="text-sm text-gray-700 mb-6">Thank you for your cooperation and support.</p>
+                    <p class="text-sm text-gray-700">Kind regards,<br><strong>School Leadership Team</strong></p>
+                </div>
+
+                <!-- Staff Template -->
+                <div class="bg-[#fdfbf7] p-8 border border-gray-300 rounded-md shadow-sm relative avoid-break">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gold-500 rounded-t-md"></div>
+                    <div class="text-xs text-gray-400 uppercase tracking-widest mb-4">Staff Briefing Template</div>
+                    
+                    <p class="text-sm font-bold text-gray-800 mb-4">Subject: Staff Briefing – Business Continuity Activation</p>
+                    <p class="text-sm text-gray-700 mb-4">Dear Staff,</p>
+                    <p class="text-sm text-gray-700 mb-4">Due to <strong>[incident description]</strong>, the school has activated the Business Continuity Plan at <strong>Level [X]</strong>.</p>
+                    <p class="text-sm text-gray-700 mb-2">Immediate actions required:</p>
+                    <ul class="list-disc pl-5 text-sm text-gray-700 mb-4 space-y-1">
+                        <li>Follow departmental continuity procedures</li>
+                        <li>Maintain regular communication with line managers</li>
+                        <li>Ensure student engagement and safeguarding procedures are maintained</li>
+                    </ul>
+                    <p class="text-sm text-gray-700 mb-4">Further operational updates will be provided as the situation develops.</p>
+                    <p class="text-sm text-gray-700 mb-6">Thank you for your professionalism and cooperation.</p>
+                    <p class="text-sm text-gray-700"><strong>School Principal</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Op Element 4 -->
+        <section id="op-4" class="mb-12 page-break">
+            <h2 class="text-xl font-bold text-navy-900 mb-4 flex items-center"><span class="bg-gold-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">4</span> Emergency Quick Guide for Teachers</h2>
+            <p class="text-sm text-gray-700 mb-6">This one-page guide can be issued to all teaching staff.</p>
+
+            <div class="border-2 border-navy-900 p-8 rounded-xl max-w-3xl mx-auto shadow-lg bg-white relative overflow-hidden avoid-break">
+                <!-- Watermark logo logic -->
+                <i data-lucide="shield-check" class="absolute -right-10 -bottom-10 w-64 h-64 text-gray-50 opacity-50"></i>
+                
+                <h3 class="text-2xl font-serif font-bold text-center text-navy-900 mb-8 uppercase tracking-widest border-b-2 border-gold-500 pb-4">Quick Guide for Teachers</h3>
+
+                <div class="space-y-8 relative z-10">
+                    <div>
+                        <h4 class="text-lg font-bold text-red-700 flex items-center mb-3"><i data-lucide="alert-triangle" class="w-5 h-5 mr-2"></i> If School Closure Occurs</h4>
+                        <p class="text-sm text-gray-600 mb-2 font-medium">Teachers should:</p>
+                        <ul class="list-disc pl-6 text-sm text-gray-800 space-y-2">
+                            <li>Check official staff communication channels immediately.</li>
+                            <li>Prepare remote learning lessons according to the school’s digital learning protocol.</li>
+                            <li>Upload lesson materials to the designated learning platform.</li>
+                            <li>Record student attendance and participation.</li>
+                            <li>Report safeguarding concerns immediately.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-bold text-navy-900 flex items-center mb-3"><i data-lucide="laptop" class="w-5 h-5 mr-2"></i> During Remote Learning</h4>
+                        <p class="text-sm text-gray-600 mb-2 font-medium">Teachers must:</p>
+                        <ul class="list-disc pl-6 text-sm text-gray-800 space-y-2">
+                            <li>Maintain regular contact with students.</li>
+                            <li>Provide clear instructions for assignments.</li>
+                            <li>Ensure lessons are inclusive and accessible.</li>
+                            <li>Monitor student wellbeing and engagement.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-600">
+                        <h4 class="text-md font-bold text-red-800 flex items-center mb-2"><i data-lucide="shield" class="w-4 h-4 mr-2"></i> Safeguarding Reminder</h4>
+                        <p class="text-sm text-gray-800">Teachers must continue to follow the school’s safeguarding procedures and report concerns to the designated safeguarding lead without delay.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Op Element 5 & 6 -->
+        <div class="grid md:grid-cols-2 gap-8 page-break">
+            <!-- Op Element 5 -->
+            <section id="op-5" class="avoid-break">
+                <h2 class="text-xl font-bold text-navy-900 mb-4 flex items-center"><span class="bg-gold-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">5</span> Crisis Decision Log Template</h2>
+                <p class="text-sm text-gray-700 mb-4">During emergencies, the Business Continuity Management Team should maintain a decision log.</p>
+                
+                <div class="overflow-x-auto shadow-sm border border-gray-200 rounded-lg mb-2">
+                    <table class="styled-table table-auto w-full text-left text-sm">
+                        <thead>
+                            <tr>
+                                <th class="p-3">Date/Time</th>
+                                <th class="p-3">Incident Update</th>
+                                <th class="p-3">Decision Taken</th>
+                                <th class="p-3">Responsible Person</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            <!-- Empty rows for printing/filling -->
+                            <tr class="border-b h-12"><td></td><td></td><td></td><td></td></tr>
+                            <tr class="border-b h-12"><td></td><td></td><td></td><td></td></tr>
+                            <tr class="h-12"><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-sm text-gray-600 italic">Maintaining this log ensures accountability, transparency, and effective post-incident review.</p>
+            </section>
+
+            <!-- Op Element 6 -->
+            <section id="op-6" class="avoid-break">
+                <h2 class="text-xl font-bold text-navy-900 mb-4 flex items-center"><span class="bg-gold-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">6</span> Key Compliance Standards</h2>
+                
+                <div class="bg-navy-900 text-white p-6 rounded-lg shadow-md h-full">
+                    <p class="text-sm mb-4 text-gray-200">The AWPS Business Continuity Plan aligns with the international standard:</p>
+                    <div class="bg-navy-800 border border-gold-500 p-3 rounded mb-4 font-bold text-center">
+                        ISO 22301 Business Continuity Management
+                    </div>
+                    
+                    <p class="text-sm mb-3 text-gray-200">And with guidance from:</p>
+                    <ul class="list-none space-y-2 mb-6">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-gold-500 mr-2"></i> UAE Ministry of Education</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-gold-500 mr-2"></i> UNESCO</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-gold-500 mr-2"></i> Disaster Recovery Institute International</li>
+                    </ul>
+                    <p class="text-sm text-gray-300 italic">These frameworks support effective preparedness, response, and recovery in educational environments.</p>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- Initialize icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
