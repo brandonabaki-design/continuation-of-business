@@ -58,10 +58,13 @@
                 box-shadow: none !important;
                 max-width: 100% !important;
                 margin: 0 !important;
-                padding: 0 !important;
+                /* Added padding to simulate page margins since @page margin is 0 */
+                padding: 1.5cm 2cm !important; 
             }
             .page-break {
                 page-break-before: always;
+                /* Simulate a top margin for forced new pages */
+                padding-top: 1.5cm;
             }
             .avoid-break {
                 page-break-inside: avoid;
@@ -69,15 +72,10 @@
             a[href]:after {
                 content: none !important;
             }
-            /* Adjust margins for printing to manage browser tags */
+            /* Adjust margins for printing */
             @page {
-                margin-top: 0mm; /* Hides the browser's Date and Title at the top */
-                margin-bottom: 15mm; /* Keeps space at bottom for Page Numbers */
-                margin-left: 15mm;
-                margin-right: 15mm;
-            }
-            body {
-                padding-top: 20mm; /* Protects content from hitting the top edge of the paper */
+                /* Setting margin to 0 forces the browser to hide default headers and footers */
+                margin: 0; 
             }
         }
 
@@ -122,44 +120,19 @@
         <span class="font-semibold pr-2 hidden group-hover:inline-block">Save as PDF</span>
     </button>
 
-    <!-- Script to clean up browser headers/footers during print -->
-    <script>
-        window.addEventListener('beforeprint', () => {
-            // Temporarily clear the title
-            document.originalTitle = document.title;
-            document.title = "\u200B"; 
-
-            // Temporarily truncate the URL to make the bottom left much cleaner
-            document.originalUrl = window.location.href;
-            try {
-                window.history.replaceState({}, '', '/');
-            } catch(e) {
-                // Ignore security errors if running locally
-            }
-        });
-
-        window.addEventListener('afterprint', () => {
-            // Restore original title and URL after the print dialog closes
-            document.title = document.originalTitle;
-            try {
-                window.history.replaceState({}, '', document.originalUrl);
-            } catch(e) {}
-        });
-    </script>
-
     <!-- Main Document Container (A4 Size approximation for screen) -->
     <div class="document-container max-w-[210mm] mx-auto bg-white shadow-2xl my-8 p-12 sm:p-16 lg:p-20 relative overflow-hidden">
         
         <!-- Decorative Header Bar -->
-        <div class="absolute top-0 left-0 w-full h-3 flex">
+        <div class="absolute top-0 left-0 w-full h-3 flex no-print">
             <div class="w-3/4 bg-navy-900"></div>
             <div class="w-1/4 bg-gold-500"></div>
         </div>
 
         <!-- COVER PAGE -->
         <div class="min-h-[800px] flex flex-col items-center justify-center text-center page-break pb-20 relative">
-            <!-- Replace the src URL below with your GitHub "Raw" image link -->
-            <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPOSITORY/main/logo.png" 
+            <!-- Replace 'logo.png' with your actual image file name if stored locally -->
+            <img src="logo.png" 
                  alt="Al Wahda Private School Logo" 
                  onerror="this.onerror=null; this.src='https://placehold.co/800x250/0f294a/ffffff?text=AL+WAHDA+PRIVATE+SCHOOL\nAn+American+Curriculum+School&font=lora'" 
                  class="w-full max-w-lg mb-16 object-contain">
