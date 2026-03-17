@@ -58,13 +58,10 @@
                 box-shadow: none !important;
                 max-width: 100% !important;
                 margin: 0 !important;
-                /* Added padding to simulate page margins since @page margin is 0 */
-                padding: 1.5cm 2cm !important; 
+                padding: 0 !important;
             }
             .page-break {
                 page-break-before: always;
-                /* Simulate a top margin for forced new pages */
-                padding-top: 1.5cm;
             }
             .avoid-break {
                 page-break-inside: avoid;
@@ -74,8 +71,7 @@
             }
             /* Adjust margins for printing */
             @page {
-                /* Setting margin to 0 forces the browser to hide default headers and footers */
-                margin: 0; 
+                margin: 2cm;
             }
         }
 
@@ -124,7 +120,7 @@
     <div class="document-container max-w-[210mm] mx-auto bg-white shadow-2xl my-8 p-12 sm:p-16 lg:p-20 relative overflow-hidden">
         
         <!-- Decorative Header Bar -->
-        <div class="absolute top-0 left-0 w-full h-3 flex no-print">
+        <div class="absolute top-0 left-0 w-full h-3 flex">
             <div class="w-3/4 bg-navy-900"></div>
             <div class="w-1/4 bg-gold-500"></div>
         </div>
